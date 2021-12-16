@@ -3,7 +3,6 @@
     <p>No Modules Yet!</p>
   </div>
   <div v-else>
-    <p>Show Modules</p>
     <table class="table">
       <thead>
         <tr>
@@ -24,7 +23,7 @@
           <td>{{ module.getName() }}</td>
           <td>{{ module.getCredits() }}</td>
           <td>{{ module.calcScore() }}%</td>
-          <td><button>View More</button></td>
+          <td><button class="viewMore">View More</button></td>
         </tr>
       </tbody>
     </table>
@@ -70,7 +69,7 @@ h1 {
   margin-left: auto;
   margin-right: auto;
   width: 60%;
-  padding: 10px;
+  padding: 15px;
   margin-bottom: 30px;
   border-collapse: collapse;
 }
@@ -95,5 +94,24 @@ td {
   background-color: white; /* Green */
   color: #4caf50;
   border: 2px solid #4caf50;
+}
+
+.viewMore {
+  border: none;
+  color: #4caf50;
+  padding: 5px 10px;
+  margin: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition-duration: 0.4s;
+  border: 1px solid white;
+}
+
+.viewMore:hover {
+  background-color: white; /* Green */
+  color: #4caf50;
+  border: 1px solid #4caf50;
 }
 </style>
