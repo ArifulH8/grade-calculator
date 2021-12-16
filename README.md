@@ -1,4 +1,4 @@
-# degree-calculator
+# grade-calculator
 
 ## Project setup
 ```
