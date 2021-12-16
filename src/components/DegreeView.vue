@@ -23,7 +23,11 @@
           <td>{{ module.getName() }}</td>
           <td>{{ module.getCredits() }}</td>
           <td>{{ module.calcScore() }}%</td>
-          <td><button class="viewMore">View More</button></td>
+          <td>
+            <button class="viewMore" @click="viewModule(index)">
+              View More
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -42,6 +46,7 @@ import ModuleCreate from "./ModuleCreate.vue";
 export default {
   components: { ModuleCreate },
   name: "Degree",
+  emits: ["moduleView"],
   props: ["degree"],
   data() {
     return {
@@ -55,6 +60,9 @@ export default {
     addModule(module) {
       this.degree.addModule(module);
       this.showModuleCreate = false;
+    },
+    viewModule(index) {
+      this.$emit("moduleView", index);
     },
   },
 };

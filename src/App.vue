@@ -5,24 +5,38 @@
   <p>Degree Classification: {{ degree.getStatus() }}</p>
   <p>Degree Percentage: {{ degree.calcScore() }}%</p>
   <div v-if="showDegree">
-    <DegreeView :degree="degree" />
+    <DegreeView :degree="degree" @moduleView="moduleView"/>
+  </div>
+  <div v-if="showModule">
+    <ModuleView :module="currentModule" />
   </div>
 </template>
 
 <script>
 import DegreeView from "./components/DegreeView.vue";
+import ModuleView from './components/ModuleView.vue';
 import Degree from "./js/Degree";
 
 export default {
   name: "App",
   components: {
     DegreeView,
+    ModuleView,
   },
   data() {
     return {
       degree: new Degree("Computer Science"),
       showDegree: true,
+      showModule: false,
+      currentModule: null,
     };
+  },
+  methods: {
+    moduleView(index){
+      this.currentModule = this.degree.getModules()[index];
+      this.showDegree = false;
+      this.showModule = true;
+    },
   },
 };
 </script>
