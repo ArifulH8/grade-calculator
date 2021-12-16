@@ -1,15 +1,25 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png" />
-  <Degree />
+  <h1>Grade Calculator</h1>
+  <p>Degree Name: {{ degree.getName() }}</p>
+  <p>Degree Classification: {{ degree.getStatus() }} </p>
+  <p>Degree Percentage: {{ degree.calcScore() }}%</p>
+  <DegreeView :degree="degree" />
 </template>
 
 <script>
-import Degree from "./components/Degree.vue";
+import DegreeView from "./components/DegreeView.vue";
+import Degree from "./js/Degree";
 
 export default {
   name: "App",
   components: {
-    Degree,
+    DegreeView,
+  },
+  data() {
+    return {
+      degree: new Degree("Computer Science"),
+    };
   },
 };
 </script>

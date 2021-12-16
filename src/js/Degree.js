@@ -35,9 +35,12 @@ class Degree {
 
   calcScore() {
     let total = 0;
-    this.getModules.array.forEach((module) => {
-      total += module.calcScore();
-    });
+    let modules = this.getModules;
+    if (modules.length != 0){
+      modules.forEach((module) => {
+        total += module.calcScore();
+      });
+    }
 
     if (total >= 0.7) {
       this.setStatus("1st");
