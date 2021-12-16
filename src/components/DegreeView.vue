@@ -4,12 +4,36 @@
   </div>
   <div v-else>
     <p>Show Modules</p>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Credits</th>
+          <th>Grade</th>
+          <th>View More</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          v-for="(module, index) in degree.getModules()"
+          :key="index"
+          class="table-header"
+        >
+          <td>{{ module.getId() }}</td>
+          <td>{{ module.getName() }}</td>
+          <td>{{ module.getCredits() }}</td>
+          <td>{{ module.calcScore() }}%</td>
+          <td><button>View More</button></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
   <div class="buttons">
     <button @click="addNewModule">Add New Module</button>
   </div>
   <div v-if="showModuleCreate">
-    <ModuleCreate @moduleCreated="addModule(module)" />
+    <ModuleCreate @moduleCreated="addModule" />
   </div>
 </template>
 
@@ -32,7 +56,6 @@ export default {
     addModule(module) {
       this.degree.addModule(module);
       this.showModuleCreate = false;
-      console.log("Got a new module");
     },
   },
 };
@@ -43,8 +66,22 @@ h1 {
   color: #42b983;
 }
 
+.table {
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+  padding: 10px;
+  margin-bottom: 30px;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 2px solid rgb(54, 91, 92);
+}
+
 .buttons button {
-  background-color: #4CAF50; /* Green */
+  background-color: #4caf50; /* Green */
   border: none;
   color: white;
   padding: 10px 20px;
@@ -56,7 +93,7 @@ h1 {
 }
 .buttons button:hover {
   background-color: white; /* Green */
-  color: #4CAF50;
-  border: 2px solid #4CAF50;
+  color: #4caf50;
+  border: 2px solid #4caf50;
 }
 </style>
