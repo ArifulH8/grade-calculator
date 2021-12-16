@@ -34,6 +34,8 @@ class Assignment {
   }
 
   calcScore() {
-    return (this.getGrade * this.getWeight) / 100;
+    return (this.getGrade() * this.getWeight());
   }
 }
+
+export default Assignment;
