@@ -1,5 +1,5 @@
 <template>
-  <h1>Degree Calculator</h1>
+  <h1>Grade Calculator</h1>
   <p>Degree Name: {{ degree.getName() }}</p>
 </template>
 
