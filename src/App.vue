@@ -2,9 +2,11 @@
   <img alt="Vue logo" src="./assets/logo.png" />
   <h1>Grade Calculator</h1>
   <p>Degree Name: {{ degree.getName() }}</p>
-  <p>Degree Classification: {{ degree.getStatus() }} </p>
+  <p>Degree Classification: {{ degree.getStatus() }}</p>
   <p>Degree Percentage: {{ degree.calcScore() }}%</p>
-  <DegreeView :degree="degree" />
+  <div v-if="showDegree">
+    <DegreeView :degree="degree" />
+  </div>
 </template>
 
 <script>
@@ -19,6 +21,7 @@ export default {
   data() {
     return {
       degree: new Degree("Computer Science"),
+      showDegree: true,
     };
   },
 };

@@ -45,10 +45,14 @@ class Module {
 
   calcScore() {
     let total = 0;
-    this.getAssignment.array.forEach((assignment) => {
-      total += assignment.calcScore();
-    });
-
+    let assignment = this.getAssignment;
+    if (assignment.length != 0) {
+      assignment.forEach((assignment) => {
+        total += assignment.calcScore();
+      });
+    }
     return total;
   }
 }
+
+export default Module;
