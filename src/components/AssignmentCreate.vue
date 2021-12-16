@@ -6,13 +6,16 @@
     placeholder="Input Assignment Name"
   /><br />
   <label>Assignment Grade:</label>
-  <input v-model.number="assignmentGrade" placeholder="Assignment Grade" /><br />
+  <input
+    v-model.number="assignmentGrade"
+    placeholder="Assignment Grade"
+  /><br />
   <label>Assignment Weight:</label>
   <input
     v-model.number="assignmentWeight"
     placeholder="Input Assignment Weight"
   /><br />
-  <button @click="addAssignment">Add Assignment</button>
+  <button @click="addAssignment" class="viewMore">Add Assignment</button>
 </template>
 
 <script>
@@ -50,5 +53,24 @@ label,
 input {
   padding: 10px 20px;
   margin: 5px;
+}
+
+.viewMore {
+  border: none;
+  color: #4caf50;
+  padding: 5px 10px;
+  margin: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition-duration: 0.4s;
+  border: 1px solid white;
+}
+
+.viewMore:hover {
+  background-color: white; /* Green */
+  color: #4caf50;
+  border: 1px solid #4caf50;
 }
 </style>
