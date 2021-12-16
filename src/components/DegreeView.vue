@@ -1,5 +1,5 @@
 <template>
-  <div v-if="degree.getModules.length == 0">
+  <div v-if="degree.getModules().length == 0">
     <p>No Modules Yet!</p>
   </div>
   <div v-else>
@@ -9,7 +9,7 @@
     <button @click="addNewModule">Add New Module</button>
   </div>
   <div v-if="showModuleCreate">
-    <ModuleCreate />
+    <ModuleCreate @moduleCreated="addModule(module)" />
   </div>
 </template>
 
@@ -25,10 +25,14 @@ export default {
       showModuleCreate: false,
     };
   },
-
   methods: {
     addNewModule() {
       this.showModuleCreate = true;
+    },
+    addModule(module) {
+      this.degree.addModule(module);
+      this.showModuleCreate = false;
+      console.log("Got a new module");
     },
   },
 };

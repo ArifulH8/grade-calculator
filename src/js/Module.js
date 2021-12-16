@@ -40,7 +40,7 @@ class Module {
   }
 
   addAssignment(assignment) {
-    this.getAssignment.push(assignment);
+    this.getAssignment().push(assignment);
   }
 
   calcScore() {

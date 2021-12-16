@@ -30,7 +30,7 @@ class Degree {
   }
 
   addModule(module) {
-    this.getModules.push(module);
+    this.getModules().push(module);
   }
 
   calcScore() {

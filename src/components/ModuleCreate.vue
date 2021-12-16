@@ -1,11 +1,14 @@
 <template>
   <p>Module Create</p>
   <label>Module Name:</label>
-  <input v-model="moduleName" placeholder="Input Module Name" /><br />
+  <input v-model.trim="moduleName" placeholder="Input Module Name" /><br />
   <label>Module ID:</label>
-  <input v-model="moduleId" placeholder="Input Module ID" /><br />
+  <input v-model.trim="moduleId" placeholder="Input Module ID" /><br />
   <label>Module Credits:</label>
-  <input v-model="moduleCredits" placeholder="Input Module Credits" /><br />
+  <input
+    v-model.trim="moduleCredits"
+    placeholder="Input Module Credits"
+  /><br />
   <button @click="addModule">Add Module</button>
 </template>
 
@@ -13,6 +16,7 @@
 import Module from "../js/Module";
 export default {
   name: "ModuleCreate",
+  emits: ["moduleCreated"],
   data() {
     return {
       moduleName: "",
@@ -22,12 +26,17 @@ export default {
   },
   methods: {
     addModule() {
-      let newModule = Module(
+      let newModule = new Module(
         this.moduleName,
         this.moduleId,
         this.moduleCredits
       );
-      console.log(newModule);
+
+      this.moduleName = "";
+      this.moduleId = "";
+      this.moduleCredits = "";
+
+      this.$emit("moduleCreated", newModule);
     },
   },
 };
