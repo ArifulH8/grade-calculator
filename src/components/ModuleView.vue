@@ -29,6 +29,9 @@
   <div class="buttons">
     <button @click="addNewAssignment">Add New Assignment</button>
   </div>
+  <div class="buttons">
+    <button @click="degreeView">View Module List</button>
+  </div>
   <div v-if="showAssignmentCreate">
     <AssignmentCreate @assignmentCreated="addAssignment" />
   </div>
@@ -39,6 +42,7 @@ import AssignmentCreate from "./AssignmentCreate.vue";
 export default {
   components: { AssignmentCreate },
   name: "Module",
+  emits: ["degreeView"],
   props: ["module"],
   data() {
     return {
@@ -53,6 +57,9 @@ export default {
       this.module.addAssignment(assignment);
       this.showAssignmentCreate = false;
       console.log(this.module.getAssignment())
+    },
+    degreeView(){
+      this.$emit("degreeView");
     },
   },
 };

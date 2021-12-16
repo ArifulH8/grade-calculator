@@ -8,7 +8,7 @@
     <DegreeView :degree="degree" @moduleView="moduleView" />
   </div>
   <div v-if="showModule">
-    <ModuleView :module="currentModule" />
+    <ModuleView :module="currentModule" @degreeView = "degreeView" />
   </div>
 </template>
 
@@ -36,6 +36,10 @@ export default {
       this.currentModule = this.degree.getModules()[index];
       this.showDegree = false;
       this.showModule = true;
+    },
+    degreeView() {
+      this.showModule = false;
+      this.showDegree = true;
     },
   },
 };

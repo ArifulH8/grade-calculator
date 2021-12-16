@@ -92,6 +92,7 @@ td {
   border: none;
   color: white;
   padding: 10px 20px;
+  margin: 10px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
