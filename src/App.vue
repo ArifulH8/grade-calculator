@@ -2,13 +2,13 @@
   <img alt="Vue logo" src="./assets/logo.png" />
   <h1>Grade Calculator</h1>
   <p>Degree Name: {{ degree.getName() }}</p>
-  <p>Degree Classification: {{ degree.getStatus() }}</p>
-  <p>Degree Percentage: {{ degree.calcScore() }}%</p>
+  <p>Degree Classification: {{ classification }}</p>
+  <p>Degree Percentage: {{ score }}%</p>
   <div v-if="showDegree">
     <DegreeView :degree="degree" @moduleView="moduleView" />
   </div>
   <div v-if="showModule">
-    <ModuleView :module="currentModule" @degreeView = "degreeView" />
+    <ModuleView :module="currentModule" @degreeView="degreeView" />
   </div>
 </template>
 
@@ -40,6 +40,14 @@ export default {
     degreeView() {
       this.showModule = false;
       this.showDegree = true;
+    },
+  },
+  computed: {
+    score() {
+      return this.degree.calcScore();
+    },
+    classification() {
+      return this.degree.getStatus();
     },
   },
 };

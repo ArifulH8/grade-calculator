@@ -35,7 +35,7 @@ class Degree {
 
   calcScore() {
     let total = 0;
-    let modules = this.getModules;
+    let modules = this.getModules();
     if (modules.length != 0) {
       modules.forEach((module) => {
         total += module.calcScore();
