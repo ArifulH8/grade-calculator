@@ -56,9 +56,9 @@ export default {
     addAssignment(assignment) {
       this.module.addAssignment(assignment);
       this.showAssignmentCreate = false;
-      console.log(this.module.getAssignment())
+      console.log(this.module.getAssignment());
     },
-    degreeView(){
+    degreeView() {
       this.$emit("degreeView");
     },
   },

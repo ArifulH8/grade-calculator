@@ -8,7 +8,7 @@
   <label>Assignment Grade:</label>
   <input
     v-model.number="assignmentGrade"
-    placeholder="Assignment Grade"
+    placeholder="Input Assignment Grade"
   /><br />
   <label>Assignment Weight:</label>
   <input
@@ -16,6 +16,7 @@
     placeholder="Input Assignment Weight"
   /><br />
   <button @click="addAssignment" class="viewMore">Add Assignment</button>
+  <p>{{ error }}</p>
 </template>
 
 <script>
@@ -28,21 +29,42 @@ export default {
       assignmentName: "",
       assignmentGrade: "",
       assignmentWeight: "",
+      error: "",
     };
   },
   methods: {
     addAssignment() {
-      let newAssignment = new Assignment(
-        this.assignmentName,
-        parseInt(this.assignmentGrade),
-        parseInt(this.assignmentWeight)
-      );
+      try {
+        if (
+          this.assignmentName == "" ||
+          this.assignmentGrade == "" ||
+          this.assignmentWeight == ""
+        ) {
+          throw "Assignment Name and Assignment Grade and Assignment Weight cannot be empty";
+        } else if (
+          typeof this.assignmentGrade === "string" ||
+          typeof this.assignmentWeight === "string"
+        ) {
+          throw "Assignment Grade and Assignment Weight has to be a number!";
+        } else if (this.assignmentGrade < 0 || this.assignmentGrade > 100) {
+          throw "Assignment Grade has to be between 0 and 100";
+        } else if (this.assignmentWeight < 0 || this.assignmentWeight >= 100) {
+          throw "Assignment Weight has to be between 0 and 100";
+        } else {
+          let newAssignment = new Assignment(
+            this.assignmentName,
+            this.assignmentGrade,
+            this.assignmentWeight
+          );
+          this.assignmentName = "";
+          this.assignmentGrade = "";
+          this.assignmentWeight = "";
 
-      this.assignmentName = "";
-      this.assignmentGrade = "";
-      this.assignmentWeight = "";
-
-      this.$emit("assignmentCreated", newAssignment);
+          this.$emit("assignmentCreated", newAssignment);
+        }
+      } catch (err) {
+        this.error = err;
+      }
     },
   },
 };
