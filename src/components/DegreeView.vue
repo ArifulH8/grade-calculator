@@ -10,6 +10,7 @@
           <th>Name</th>
           <th>Credits</th>
           <th>Grade</th>
+          <th>Edit</th>
           <th>View More</th>
         </tr>
       </thead>
@@ -23,6 +24,9 @@
           <td>{{ module.getName() }}</td>
           <td>{{ module.getCredits() }}</td>
           <td>{{ module.calcScore() }}%</td>
+          <td>
+            <button class="viewMore" @click="showModule(index)">Edit</button>
+          </td>
           <td>
             <button class="viewMore" @click="viewModule(index)">
               View More
@@ -38,24 +42,32 @@
   <div v-if="showModuleCreate">
     <ModuleCreate @moduleCreated="addModule" />
   </div>
+  <div v-if="showEditModule">
+    <ModuleEdit :moduleEdit="moduleEdit" @moduleEdited="editModule" />
+  </div>
 </template>
 
 <script>
 import ModuleCreate from "./ModuleCreate.vue";
+import ModuleEdit from "./ModuleEdit.vue";
 
 export default {
-  components: { ModuleCreate },
+  components: { ModuleCreate, ModuleEdit },
   name: "Degree",
   emits: ["moduleView"],
   props: ["degree"],
   data() {
     return {
       showModuleCreate: false,
+      showEditModule: false,
+      moduleEdit: null,
+      index: null,
     };
   },
   methods: {
     addNewModule() {
       this.showModuleCreate = true;
+      this.showEditModule = false;
     },
     addModule(module) {
       this.degree.addModule(module);
@@ -63,6 +75,16 @@ export default {
     },
     viewModule(index) {
       this.$emit("moduleView", index);
+    },
+    showModule(index) {
+      this.showModuleCreate = false;
+      this.showEditModule = true;
+      this.index = index;
+      this.moduleEdit = this.degree.getModules()[index];
+    },
+    editModule(module) {
+      this.showEditModule = false;
+      this.degree.getModules()[this.index] = module;
     },
   },
 };
