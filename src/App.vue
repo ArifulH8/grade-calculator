@@ -4,6 +4,9 @@
   <p>Degree Name: {{ degree.getName() }}</p>
   <p>Degree Classification: {{ classification }}</p>
   <p>Degree Percentage: {{ score }}%</p>
+
+  <button class="viewMore" @click="jsonDegreeD">Download</button>
+
   <div v-if="showDegree">
     <DegreeView :degree="degree" @moduleView="moduleView" />
   </div>
@@ -40,6 +43,24 @@ export default {
     degreeView() {
       this.showModule = false;
       this.showDegree = true;
+    },
+    jsonDegreeD() {
+      let json = JSON.stringify(this.degree);
+      let formattedDate = new Date().toJSON().slice(0, 10).replace(/-/g, "/");
+      let filename = `degree ${formattedDate}.json`;
+
+      let element = document.createElement("a");
+      element.setAttribute(
+        "href",
+        "data:application/json;charset=utf-8," + encodeURIComponent(json)
+      );
+      element.setAttribute("download", filename);
+
+      element.style.display = "none";
+      document.body.appendChild(element);
+
+      element.click();
+      document.body.removeChild(element);
     },
   },
   computed: {
