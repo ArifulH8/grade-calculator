@@ -1,6 +1,4 @@
 <template>
-  <p>{{ assignmentEdit }}</p>
-
   <p>Assignment Edit</p>
   <label>Assignment Name:</label>
   <input
@@ -32,7 +30,7 @@ export default {
     return {
       assignmentName: this.assignmentEdit.getName(),
       assignmentGrade: this.assignmentEdit.getGrade(),
-      assignmentWeight: this.assignmentEdit.calcScore(),
+      assignmentWeight: this.assignmentEdit.getWeight(),
       error: "",
     };
   },
@@ -74,4 +72,29 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+label,
+input {
+  padding: 10px 20px;
+  margin: 5px;
+}
+
+.viewMore {
+  border: none;
+  color: #4caf50;
+  padding: 5px 10px;
+  margin: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition-duration: 0.4s;
+  border: 1px solid white;
+}
+
+.viewMore:hover {
+  background-color: white; /* Green */
+  color: #4caf50;
+  border: 1px solid #4caf50;
+}
+</style>
