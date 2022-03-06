@@ -40,15 +40,16 @@ class Degree {
       modules.forEach((module) => {
         total += module.calcScore();
       });
+      total = total / modules.length;
     }
 
-    if (total >= 0.7) {
+    if (total >= 70) {
       this.setStatus("1st");
-    } else if (total >= 0.6) {
+    } else if (total >= 60) {
       this.setStatus("2:1");
-    } else if (total >= 0.5) {
+    } else if (total >= 50) {
       this.setStatus("2:2");
-    } else if (total >= 0.4) {
+    } else if (total >= 40) {
       this.setStatus("3rd");
     } else {
       this.setStatus("U");

@@ -45,9 +45,9 @@ class Module {
 
   calcScore() {
     let total = 0;
-    let assignment = this.getAssignment();
-    if (assignment.length != 0) {
-      assignment.forEach((assignment) => {
+    let assignments = this.getAssignment();
+    if (assignments.length != 0) {
+      assignments.forEach((assignment) => {
         total += assignment.calcScore();
       });
     }
